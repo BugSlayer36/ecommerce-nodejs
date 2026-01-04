@@ -1,0 +1,17 @@
+7 điều cần triển khai trong hệ thống.
+Điều 1: Nhược điểm của cách cũ khi connect...
+- cach trien khai cu va moi
+Điều 2: Cách mới để connect mongodb thay cho cũ...
+Điều 3: Cách kiểm tra bao nhiêu connect trong hệ thống code...
+- create foulder helper sau do tao file check connect
+Điều 4: Kiểm tra hệ thống quá tải connect...
+- tao func kiem tra overload trong check connect
+Điều 5: Có nên disConnect() liên tục?
+- khong can thiet phai dong connect lien tuc theo thu cong 
+Điều 6: PoolSize là gì? Và ưu điểm
+- Nhom ket noi la tap hop cac ket noi cua csdl ma co the tai su dung , duoc duy tri boi database
+- Giup cai thien hieu suat , giam chi phi , mo rong kha nang ket noi cua database
+Điều 7: Nếu Users vượt quá số lượng PoolSize thì sao?
+- Gia su set 50 PoolSize nhung co > 50 se hoat dong nhu the nao
+--> No se khong vuot qua 50 poolSize, cac request thu 51 tro di se xep hang 
+va khi 1 trong 50 connect trong poolSize free thi no se duoc ket noi vao vi tri free do

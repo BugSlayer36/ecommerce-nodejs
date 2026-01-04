@@ -1,4 +1,4 @@
 express
 morgan - lib dung de in ra log khi user chay request
 helmet - bao mat web bang cach tu them cac security header
-compression - 
+compression - nen du lieu response truoc khi gui ve cho client, tiet kiem bang thong , toi uu hoa hieu nang

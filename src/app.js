@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const { default: helmet } = require('helmet')
 const compression = require('compression')
+const { countConnect } = require('./helpers/check.connect')
 const app = express()
 
 
@@ -11,6 +12,10 @@ app.use(helmet()) // giup bao mat ung dung web bang cach tu dong them cac HTTP s
 app.use(compression())
 
 // init db 
+require('./dbs/init.mongodb')
+const { checkOverload } = require('./helpers/check.connect')
+checkOverload()
+
 
 // init routes
 app.get('/', (req, res, next) => {
@@ -19,7 +24,7 @@ app.get('/', (req, res, next) => {
 
     return res.status(200).json({
         message: 'Hello A Dep zai',
-        metadata: strCompress.repeat(1000)
+        //metadata: strCompress.repeat(1000)
     })
 })
 //handling error
