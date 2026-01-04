@@ -2,7 +2,8 @@
 
 const mongoose = require('mongoose')
 const { countConnect } = require('../helpers/check.connect')
-const connectString = `mongodb://localhost:27017/shoDEV`
+const { db: { host, name, port } } = require('../configs/config.mongodb')
+const connectString = `mongodb://${host}:${port}/${name}`
 
 class Database {
 
@@ -12,10 +13,15 @@ class Database {
 
     // connect 
     connect(type = 'mongodb') {
-        if (1 == 1) {
+
+        mongoose.set('strictQuery', true)
+
+        if (process.env.NODE_ENV !== 'production') {
             mongoose.set('debug', true)
-            mongoose.set('debug', { color: true })
         }
+
+        //connect information
+        console.log(`connect string : ${connectString}`)
 
         mongoose.connect(connectString, {
             maxPoolSize: 50

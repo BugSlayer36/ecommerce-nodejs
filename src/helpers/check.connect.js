@@ -8,7 +8,7 @@ const _SECONDS = 5000
 // count connect
 const countConnect = () => {
     const numConnection = mongoose.connections.length
-    console.log(`Number of connection::${numConnection}`)
+    return numConnection
 }
 
 // check overload
