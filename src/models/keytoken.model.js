@@ -5,7 +5,6 @@ const { Schema, model, default: mongoose } = require('mongoose');
 const DOCUMENT_NAME = 'Key'
 const COLLECTION_NAME = 'Keys'
 
-
 var keyTokenSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
@@ -16,9 +15,13 @@ var keyTokenSchema = new Schema({
         type: String,
         required: true,
     },
+    privateKey: {
+        type: String,
+        required: true
+    },
     refreshTokensUsed: {
-        type: Array, // nhung RT đã được sử dụng
-        default: []
+        type: Array, default: [] // nhung RT đã được sử dụng
+
     },
     refreshToken: { type: String, required: true }
 }, {

@@ -7,7 +7,7 @@ Content-Type: application/json
 x-api-key: 1f87c6475f4da289116fc8eb3cea55efd7b024fbd286a115d066d3672a9a366aae1ab47a308d9d7a37d70761c8d64ee28d31c16f9617aa65b89da9a7aaf3aaa8
 {
     "name" : "SHOP TRUNG 3",
-    "email" : "test1241@gmail.com",
+    "email" : "test12421@gmail.com",
     "password" : "DepTraiCoJSai" 
 }
 
@@ -26,3 +26,13 @@ Content-Type: application/json
 x-api-key: 1f87c6475f4da289116fc8eb3cea55efd7b024fbd286a115d066d3672a9a366aae1ab47a308d9d7a37d70761c8d64ee28d31c16f9617aa65b89da9a7aaf3aaa8
 x-client-id:69691118fcd416e125ad3489
 authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTY5MTExOGZjZDQxNmUxMjVhZDM0ODkiLCJlbWFpbCI6InRlc3QxMjQxQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU3MTA0MSwiZXhwIjoxNzY4NzQzODQxfQ.O2_rG_fPp2eQqQj7S0iJmktUh2iTiUuxnRfe_8K4yBw
+
+### refreshToken
+POST {{url_dev}}/shop/handlerRefreshToken
+Content-Type: application/json
+x-api-key: 1f87c6475f4da289116fc8eb3cea55efd7b024fbd286a115d066d3672a9a366aae1ab47a308d9d7a37d70761c8d64ee28d31c16f9617aa65b89da9a7aaf3aaa8
+x-client-id:69691118fcd416e125ad3489
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTY5MTExOGZjZDQxNmUxMjVhZDM0ODkiLCJlbWFpbCI6InRlc3QxMjQxQGdtYWlsLmNvbSIsImlhdCI6MTc2ODc1OTMxMywiZXhwIjoxNzY4OTMyMTEzfQ.s7F8CyE05uGpWS4FL9Q3SdiCRwjglbnZbqbbsl8EKzg
+{
+    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTY5MTExOGZjZDQxNmUxMjVhZDM0ODkiLCJlbWFpbCI6InRlc3QxMjQxQGdtYWlsLmNvbSIsImlhdCI6MTc2ODc1OTMxMywiZXhwIjoxNzY5MzY0MTEzfQ.6S3KYeMNtJncWOHzd1p1k1rPiGqnFwr-bgEpGH1maXA"
+}

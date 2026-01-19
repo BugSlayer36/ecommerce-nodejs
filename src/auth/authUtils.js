@@ -11,59 +11,60 @@ const HEADER = {
     AUTHORIZATION: 'authorization'
 }
 
-const createTokenPair = async (payload, secretKey) => {
-    try {
-        const accessToken = JWT.sign(payload, secretKey, {
-            expiresIn: '2d'
-        })
+const createTokenPair = async (payload, publicKey, privateKey) => {
+    const accessToken = JWT.sign(payload, privateKey, {
+        algorithm: 'RS256',
+        expiresIn: '2d'
+    })
 
-        const refreshToken = JWT.sign(payload, secretKey, {
-            expiresIn: '7d'
-        })
+    const refreshToken = JWT.sign(payload, privateKey, {
+        algorithm: 'RS256',
+        expiresIn: '7d'
+    })
 
-        return { accessToken, refreshToken }
-    } catch (error) {
-        throw error
-    }
+    return { accessToken, refreshToken }
 }
 
-const authentication = asyncHandler(async (req, res, next) => {
-    /*
-    1. Check user_id missing 
-    2. Get access token
-    3. verify token
-    4. check user in dbs
-    5. check keyStore with this userId
-    6. OK all -> return exits()
-    */
 
-    // check user_id missing 
+
+const authentication = asyncHandler(async (req, res, next) => {
     const userId = req.headers[HEADER.CLIENT_ID]
     if (!userId) throw new AuthFailureError('Invalid Request!')
 
-    // get access token
     const keyStore = await findByUserId(userId)
     if (!keyStore) throw new NotFoundError('Not Found keyStore')
 
-    //verify token
-
-    const accessToken = req.headers[HEADER.AUTHORIZATION]
-    if (!accessToken) throw new AuthFailureError('Invalid Request')
-
     const authHeader = req.headers[HEADER.AUTHORIZATION]
-    console.log('Authorization header:', authHeader)
-    try {
-        const decodeUser = JWT.verify(accessToken, keyStore.publicKey)
+    if (!authHeader) throw new AuthFailureError('Invalid Request')
 
-        if (userId !== decodeUser.userId) throw new AuthFailureError('Invalid UserId')
+    const token = authHeader.split(' ')[1]
+    if (!token) throw new AuthFailureError('Invalid Token Format')
+
+    try {
+        const decodeUser = JWT.verify(token, keyStore.publicKey, {
+            algorithms: ['RS256']
+        })
+
+        if (userId !== decodeUser.userId) {
+            throw new AuthFailureError('Invalid UserId')
+        }
+
         req.keyStore = keyStore
+        req.user = decodeUser
         return next()
     } catch (error) {
+        console.error('JWT verify error:', error.message)
         throw error
     }
 })
 
+
+const verifyJWT = async (token, keyScret) => {
+    return await JWT.verify(token, keyScret)
+}
+
 module.exports = {
     createTokenPair,
-    authentication
+    authentication,
+    verifyJWT
 }
