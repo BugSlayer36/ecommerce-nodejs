@@ -1,0 +1,5 @@
+trong 1 collection giới hạn của document chỉ có 16mb
+if > 16mb: 
+    Không cho lưu
+
+- MongooseDB cho phép có 100 object lồng nhau
