@@ -2,8 +2,9 @@
 
 const { Schema, model } = require('mongoose');
 
-DOCUMENT_NAME = 'Product'
-COLLECTION_NAME = 'Products'
+const DOCUMENT_NAME = 'Product'
+const COLLECTION_NAME = 'Products'
+
 
 const productSchema = new Schema({
     product_name: {
@@ -29,7 +30,7 @@ const productSchema = new Schema({
     product_type: {
         type: String,
         required: true,
-        enum: ['Electronics', 'Clothing', 'Furniture']
+        enum: ['Electronics', 'Clothings', 'Furniture']
     },
     product_shop: {
         type: Schema.Types.ObjectId,
@@ -44,8 +45,8 @@ const productSchema = new Schema({
 })
 
 // define the product type = clothing 
-const clothingSchema = new Schema({
-    manufaturer: {
+const electronicSchema = new Schema({
+    manufacturer: {
         type: String,
         required: true
     },
@@ -61,7 +62,7 @@ const clothingSchema = new Schema({
 })
 
 // define the product type = electronic 
-const electronicSchema = new Schema({
+const clothingSchema = new Schema({
     brand: {
         type: String,
         required: true
